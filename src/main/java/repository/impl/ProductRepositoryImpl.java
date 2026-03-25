@@ -1,51 +1,56 @@
 /*
  * ProductRepositoryImpl.java
- * Implementation of Product Repository
- * Author: Plamedie Dinanga 230082629
- * Date: 21 March 2026
+ * Product Repository Implementation
+ * Author: Plamedie 230082629
+ * Date: 24 March 2026
  */
 package repository.impl;
 
 import domain.Product;
 import repository.ProductRepository;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class ProductRepositoryImpl implements ProductRepository {
-
-    private static Map<String, Product> productStore = new ConcurrentHashMap<>();
+    
+    private final Map<String, Product> storage = new ConcurrentHashMap<>();
 
     @Override
-    public Product save(Product product) {
-        if (product != null && product.getProductId() != null) {
-            productStore.put(product.getProductId(), product);
-            return product;
+    public Product create(Product product) {
+        if (storage.containsKey(product.getProductId())) {
+            return null; // Product already exists
         }
-        return null;
+        storage.put(product.getProductId(), product);
+        return product;
     }
 
     @Override
-    public Product findById(String productId) {
-        return productStore.get(productId);
-    }
-
-    @Override
-    public List<Product> findAll() {
-        return new ArrayList<>(productStore.values());
-    }
-
-    @Override
-    public void delete(String productId) {
-        productStore.remove(productId);
+    public Product read(String productId) {
+        return storage.get(productId);
     }
 
     @Override
     public Product update(Product product) {
-        if (product != null && productStore.containsKey(product.getProductId())) {
-            return productStore.put(product.getProductId(), product);
+        if (!storage.containsKey(product.getProductId())) {
+            return null; // Product not found
         }
-        return null;
+        storage.put(product.getProductId(), product);
+        return product;
+    }
+
+    @Override
+    public boolean delete(String productId) {
+        return storage.remove(productId) != null;
+    }
+
+    @Override
+    public Product findByProductName(String productName) {
+        return storage.values().stream()
+                .filter(p -> p.getProductName().equalsIgnoreCase(productName))
+                .findFirst()
+                .orElse(null);
     }
 }

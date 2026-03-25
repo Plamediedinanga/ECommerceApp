@@ -1,60 +1,59 @@
 /*
  * ProductFactoryTest.java
- * Test Class for Product Factory
- * Author: Plamedie Dinanga 230082629
- * Date: 21 March 2026
+ * TDD Test for Product Factory
+ * Author: Plamedie 230082629
+ * Date: 24 March 2026
  */
 package factory;
 
 import domain.Product;
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ProductFactoryTest {
 
-    ProductFactory factory = new ProductFactory();
-
     @Test
-    public void testSuccessfulProductCreation() {
-        Product product = factory.buildProduct("P001", "Laptop", 15000.00, "Gaming Laptop", 10, null);
+    public void testBuildProductSuccess() {
+        Product product = ProductFactory.buildProduct(
+            "P001", 
+            "Laptop", 
+            "Gaming Laptop", 
+            999.99
+        );
+        
         assertNotNull(product);
         assertEquals("P001", product.getProductId());
-        assertEquals("Laptop", product.getName());
-        assertEquals(15000.00, product.getPrice());
+        assertEquals("Laptop", product.getProductName());
+        assertEquals("Gaming Laptop", product.getDescription());
+        assertEquals(999.99, product.getCurrentPrice());
     }
 
     @Test
-    public void testNullProductId() {
+    public void testBuildProductNullId() {
         assertThrows(IllegalArgumentException.class, () -> {
-            factory.buildProduct(null, "Laptop", 15000.00, "Desc", 10, null);
+            ProductFactory.buildProduct(null, "Laptop", "Desc", 999.99);
         });
     }
 
     @Test
-    public void testEmptyProductId() {
+    public void testBuildProductEmptyId() {
         assertThrows(IllegalArgumentException.class, () -> {
-            factory.buildProduct("", "Laptop", 15000.00, "Desc", 10, null);
+            ProductFactory.buildProduct("", "Laptop", "Desc", 999.99);
         });
     }
 
     @Test
-    public void testNullProductName() {
+    public void testBuildProductNullName() {
         assertThrows(IllegalArgumentException.class, () -> {
-            factory.buildProduct("P001", null, 15000.00, "Desc", 10, null);
+            ProductFactory.buildProduct("P001", null, "Desc", 999.99);
         });
     }
 
     @Test
-    public void testNegativePrice() {
+    public void testBuildProductNegativePrice() {
         assertThrows(IllegalArgumentException.class, () -> {
-            factory.buildProduct("P001", "Laptop", -500.00, "Desc", 10, null);
-        });
-    }
-
-    @Test
-    public void testNegativeQuantity() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            factory.buildProduct("P001", "Laptop", 15000.00, "Desc", -5, null);
+            ProductFactory.buildProduct("P001", "Laptop", "Desc", -100.00);
         });
     }
 }

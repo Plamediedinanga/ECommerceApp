@@ -6,80 +6,39 @@
  */
 package domain;
 
-// Import Category if you have the class file, otherwise keep it as is until integrated
-// import domain.Category;
-
-import jdk.jfr.Category;
-
 public class Product {
     private final String productId;
-    private final String name;
-    private final double price;
+    private final String productName;
     private final String description;
-    private int quantity;
-    private Category category;
+    private final double currentPrice;
 
-    // Private constructor for Builder Pattern
     private Product(Builder builder) {
         this.productId = builder.productId;
-        this.name = builder.name;
-        this.price = builder.price;
+        this.productName = builder.productName;
         this.description = builder.description;
-        this.quantity = builder.quantity;
-        this.category = builder.category;
+        this.currentPrice = builder.currentPrice;
     }
 
     // Getters
-    public String getProductId() {
-        return productId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    // Setter for quantity (as it might change independently of construction)
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
+    public String getProductId() { return productId; }
+    public String getProductName() { return productName; }
+    public String getDescription() { return description; }
+    public double getCurrentPrice() { return currentPrice; }
 
     // Builder Class
     public static class Builder {
         private String productId;
-        private String name;
-        private double price;
+        private String productName;
         private String description;
-        private int quantity;
-        private Category category;
+        private double currentPrice;
 
         public Builder setProductId(String productId) {
             this.productId = productId;
             return this;
         }
 
-        public Builder setName(String name) {
-            this.name = name;
-            return this;
-        }
-
-        public Builder setPrice(double price) {
-            this.price = price;
+        public Builder setProductName(String productName) {
+            this.productName = productName;
             return this;
         }
 
@@ -88,18 +47,12 @@ public class Product {
             return this;
         }
 
-        public Builder setQuantity(int quantity) {
-            this.quantity = quantity;
-            return this;
-        }
-
-        public Builder setCategory(Category category) {
-            this.category = category;
+        public Builder setCurrentPrice(double currentPrice) {
+            this.currentPrice = currentPrice;
             return this;
         }
 
         public Product build() {
-            // Optional: Add validation here if needed
             return new Product(this);
         }
     }

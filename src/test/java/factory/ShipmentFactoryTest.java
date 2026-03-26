@@ -1,7 +1,8 @@
+package factory;
 
 import org.junit.jupiter.api.Test;
-import za.ac.cput.domain.Shipment;
-import za.ac.cput.factory.ShipmentFactory;
+import domain.Shipment;
+import factory.ShipmentFactory;
 
 import static org.junit.jupiter.api.Assertions.*;
 

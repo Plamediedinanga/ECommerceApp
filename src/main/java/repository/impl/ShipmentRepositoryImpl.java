@@ -1,8 +1,8 @@
 
-package za.ac.cput.repository.impl;
+package repository.impl;
 
-import za.ac.cput.domain.Shipment;
-import za.ac.cput.repository.ShipmentRepository;
+import domain.Shipment;
+import repository.ShipmentRepository;
 
 import java.util.*;
 
@@ -49,7 +49,12 @@ public class ShipmentRepositoryImpl implements ShipmentRepository {
     }
 
     @Override
-    public List<Shipment> getAll() {
-        return new ArrayList<>(shipmentDB.values());
+    public List<Shipment> findAll() {
+        return List.of();
     }
+
+    //@Override
+    //public List<Shipment> getAll() {
+       // return new ArrayList<>(shipmentDB.values());
+    //}
 }

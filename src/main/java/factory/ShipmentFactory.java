@@ -1,7 +1,7 @@
 
-package za.ac.cput.factory;
+package factory;
 
-import za.ac.cput.domain.Shipment;
+import domain.Shipment;
 
 import java.util.Date;
 import java.util.UUID;

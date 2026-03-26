@@ -1,5 +1,5 @@
 
-package za.ac.cput.domain;
+package domain;
 
 import java.util.Date;
 

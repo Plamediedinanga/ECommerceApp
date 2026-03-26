@@ -75,7 +75,7 @@ public class Payment {
             return this;
         }
 
-        // Copy method for updating (student logic)
+        // Copy method for updating
         public Builder copy(Payment payment) {
             this.paymentId = payment.paymentId;
             this.orderId = payment.orderId;

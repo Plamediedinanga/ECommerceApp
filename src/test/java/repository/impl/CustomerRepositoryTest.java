@@ -1,4 +1,8 @@
-
+/* 
+  Customer____.java
+  Author: 222709006 Qhama dyushu
+  Date: 22/03/2026
+    */
 package repository.impl;
 
 import domain.Customer;

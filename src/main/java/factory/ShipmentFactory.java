@@ -1,4 +1,8 @@
-
+/*
+ * ShipmentFactory.java
+ * Author: Tlangelani Chauke
+ * Date:22march 2026
+ */
 package factory;
 
 import domain.Shipment;

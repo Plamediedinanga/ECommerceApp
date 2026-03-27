@@ -10,7 +10,6 @@ import repository.PaymentRepository;
 import java.util.*;
 
 public class PaymentRepositoryImpl implements PaymentRepository {
-    // Student style: using a simple HashMap for "database"
     private final Map<String, Payment> paymentDB = new HashMap<>();
 
     @Override
